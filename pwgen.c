@@ -239,7 +239,3 @@ void writeToFile() {
         printf("\nYour credentials have been saved to account_credentials.txt.\n");
     }
 }
-
-
-
-
