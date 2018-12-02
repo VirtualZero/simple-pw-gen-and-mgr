@@ -7,12 +7,14 @@
 #define FALSE 0
 #define TRUE 1
 
+/* variable declarations */
 char serviceName[50] = "\0";
 char username[50] = "\0";
 char pwCharSet[91] = "\0";
 int pwLength = 0;
 char password[91] = "\0"; 
 
+/* function declarations */
 int getValidatedServiceName();
 int getValidatedUsername();
 int getPWCharacters();
@@ -22,6 +24,7 @@ void writeToFile();
 int main(void) {
     int validated = FALSE;
     
+    /* Controls program flow */
     while (validated == FALSE) {
         validated = getValidatedServiceName();
     }
@@ -41,10 +44,12 @@ int main(void) {
         validated = getValidatedPWLength();
     }
     
+    /* Create pw & write creds to file */
     makePassword();
     writeToFile();
 }
 
+/* Receives service name from user */
 int getValidatedServiceName() {
     int validated = FALSE;
     printf("Enter the name of the service the password is for: ");
@@ -53,6 +58,7 @@ int getValidatedServiceName() {
     return validated;
 }
 
+/* Receives username/email from user */
 int getValidatedUsername() {
     int validated = FALSE;
     printf("Enter your username or email for the service: ");
@@ -61,6 +67,7 @@ int getValidatedUsername() {
     return validated;
 }
 
+/* Receives desired pw characters from user */
 int getPWCharacters() {
     int validated = FALSE;
     int validPwCharSet = FALSE;
@@ -169,6 +176,7 @@ int getPWCharacters() {
     return validated;
 }
 
+/* Receives desired pw length from user */
 int getValidatedPWLength() {
     int validated = FALSE;
     int flush;
@@ -216,6 +224,7 @@ int getValidatedPWLength() {
     }
 }
 
+/* Generates random pw */
 void makePassword() {
     srand(time(0));
     for (int i = 0; i < pwLength; i++) {
@@ -225,6 +234,7 @@ void makePassword() {
     printf("\nYour password is:\n%s\n", password);
 }
 
+/* Writes creds to file */
 void writeToFile() {
     FILE *credentialsFile;
     credentialsFile = fopen("account_credentials.txt", "a");
